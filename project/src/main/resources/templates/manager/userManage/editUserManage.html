@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="headAndFoot/header :: common_headerLink(~{::title},~{::link},~{::script},~{::style})">
+    <meta charset="UTF-8">
+    <title>사용자 수정 페이지</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <style>
+        .container{
+            margin-top:150px;
+        }
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+        body{
+            /* color:black; */
+            color:inherit;
+            text-decoration: none;
+            /* 밑줄제거 */
+        }
+    </style>
+    <script></script>
+</head>
+<body>
+<div th:replace="~{headAndFoot/header :: common_header}"></div>
+
+<div class="container">
+    <div class="input-form-backgroud row">
+        <div class="input-form col-md-12 mx-auto">
+            <h4 class="mb-3">
+                <p th:text="${findUser.name}+'회원님의 정보'"></p></h4>
+            <form class="validation-form" th:action method="post" novalidate>
+                <div class="mb-3">
+                    <label for="name">이름</label>
+                    <input type="text" class="form-control" id="name" placeholder="이름" th:field="*{findUser.name}"
+                           th:errorclass="field-error">
+                    <div class="field-error" th:errors="*{findUser.name}">사용자 이름 오류</div>
+                </div>
+                <div class="mb-3">
+                    <label for="id">아이디</label>
+                    <input type="text" class="form-control" id="id" placeholder="아이디"
+                           th:field="*{findUser.loginId}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="pw">비밀번호</label>
+                    <input type="text" class="form-control" id="pw" placeholder="비밀번호"
+                           th:field="*{findUser.password}" th:errorclass="field-error">
+                    <div class="field-error" th:errors="*{findUser.password}">사용자 패스워드 오류</div>
+                </div>
+
+                <!--                <div class="mb-3">-->
+                <!--                    <label for="pw_ch">비밀번호 확인</label>-->
+                <!--                    <input type="email" class="form-control" id="pw_ch" placeholder="비밀번호 확인" required>-->
+                <!--                    <div class="invalid-feedback">-->
+                <!--                        비밀번호를 한번 더 입력해주세요.-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="year">생년</label>
+                        <input type="text" class="form-control" id="year" th:field="*{findUser.year}" th:errorclass="field-error">
+                        <div class="field-error" th:errors="*{findUser.year}">사용자 생일 오류</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="month">생월</label>
+                        <input type="text" class="form-control" id="month" th:field="*{findUser.month}" th:errorclass="field-error">
+                        <div class="field-error" th:errors="*{findUser.month}">사용자 생일 오류</div>
+
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="day">생일</label>
+                        <input type="text" class="form-control" id="day" th:field="*{findUser.day}" th:errorclass="field-error">
+                        <div class="field-error" th:errors="*{findUser.day}">사용자 생일 오류</div>
+                    </div>
+                </div>
+
+
+                <div class="mb-3">
+                        <div>성별</div>
+                        <div class="form-check form-check-inline" th:each="gender : ${genderList}">
+                            <input type="radio" th:field="*{findUser.gender}" th:value="${gender.description}" class="form-check-input" th:errorclass="field-error">
+                            <label th:for="${#ids.prev('gender')}" th:text="${gender.description}" class="form-check-label">남성</label>
+                            <div class="field-error" th:errors="*{findUser.gender}">사용자 성별 오류</div>
+                        </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="address">주소</label>
+                    <input type="text" class="form-control" id="address" placeholder="주소를 입력해주세요."
+                           th:field="*{findUser.address}" th:errorclass="field-error">
+                    <div class="field-error" th:errors="*{findUser.address}">사용자 주소 오류</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="postal">우편번호</label>
+                    <input type="text" class="form-control" id="postal" placeholder="우편번호를 입력해주세요."
+                           th:field="*{findUser.postal}">
+                    <div class="field-error" th:errors="*{findUser.postal}">사용자 우편번호 오류</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email">이메일</label>
+                    <input type="text" class="form-control" id="email" placeholder="이메일을 입력해주세요."
+                           th:field="*{findUser.email}" th:errorclass="field-error">
+                    <div class="field-error" th:errors="*{findUser.email}">사용자 이메일 오류</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="phone">휴대폰</label>
+                    <input type="text" class="form-control" id="phone" placeholder="-없이 입력해주세요"
+                           th:field="*{findUser.phone}" th:errorclass="field-error">
+                    <div class="field-error" th:errors="*{findUser.phone}">사용자 번호 오류</div>
+                </div>
+
+                <label>SMS안내</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" th:field="*{findUser.advertising}" checked>
+                    <label class="form-check-label" for="flexCheckChecked" >
+                        뉴스메일 받기
+                    </label>
+                </div>
+
+                <div class="mb-3">
+                    <label for="deposit">예치금</label>
+                    <input type="number" class="form-control" id="deposit" placeholder="예치할 금액을 입력해주세요"
+                           th:field="*{findUser.deposit}" th:errorclass="field-error">
+                    <div class="field-error" th:errors="*{findUser.deposit}">사용자 예치금 오류</div>
+                </div>
+                <div class="mb-3">
+                    <label for="amount">적립금</label>
+                    <input type="number" class="form-control" id="amount" placeholder="적립 금액을 입력해주세요"
+                           th:field="*{findUser.amount}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="coupon">쿠폰여부</label>
+                    <input type="text" class="form-control" id="coupon"
+                           th:field="*{findUser.coupon}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="grade">회원등급</label>
+                    <input type="text" class="form-control" id="grade"
+                           th:field="*{findUser.grade}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="admin1" th:if="*{findUser.admin}" >관리자여부</label>
+                    <input type="text" class="form-control" id="admin1"
+                           th:if="*{findUser.admin}" th:value="'관리자'"
+                           readonly>
+                    <label for="admin2" th:unless="*{findUser.admin}">관리자여부</label>
+                    <input type="text" class="form-control" id="admin2"
+                           th:unless="*{findUser.admin}" th:value="'일반 사용자'"
+                           readonly>
+                </div>
+                <div class="mb-3">
+                    <div>관심 카테고리</div>
+                    <select class="form-select" th:field="${findUser.categoryId}" th:errorclass="field-error">
+                        <option value="">== 카테고리 선택 ==</option>
+                        <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.getCategoryTitle()}+'-'+${category.getCategory()}">카테고리</option>
+                    </select>
+                    <div class="field-error" th:errors="*{findUser.categoryId}">사용자 카테고리 오류</div>
+                </div>
+                <button class="btn btn-primary btn-lg" type="submit">저장하기</button>
+                <button class="btn btn-dark btn-lg" type="button" th:onclick="|location.href='@{/manager/user/detail/{userId}(userId=${userId})}'|">취소하기</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{headAndFoot/footer :: common_footer}"></div>
+
+<script th:inline="javascript">
+
+    /*<![CDATA[*/
+    function deleteUser(userId){
+
+        if(confirm("회원을 탈퇴시키겠습니까?")){
+            location.href='/manager/user/delete/'+userId;
+        }
+    }
+
+    /*]]>*/
+
+</script>
+</body>
+</html>

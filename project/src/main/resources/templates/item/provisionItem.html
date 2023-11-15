@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="headAndFoot/header :: common_headerLink(~{::title},~{::link},~{::script},~{::style})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스타일허브</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <style>
+        .container{
+            margin-top: 150px;
+        }
+        .item_detail{
+            cursor: pointer;
+        }
+        .item_detail>img:first-child{
+            display: block;
+        }
+        .item_detail:hover>img:first-child{
+            display: none;
+        }
+        .item_detail>img:nth-child(2){
+            display: none;
+        }
+        .item_detail:hover>img:nth-child(2){
+            display: block;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+    </script>
+
+    <script>
+        window.addEventListener("scroll", function() {
+            var Navi_SlideUp = document.querySelector(".fix_header_wrap");
+            var btn_all_menu = document.querySelector(".btn-all-menu");
+            var AllMENU = document.querySelector(".AllMENU");
+            var MenuBar = document.querySelector(".menu_bar");
+
+
+            if (window.scrollY >= 200) {
+                Navi_SlideUp.style.transform = "translateY(-35px)";
+                AllMENU.style.transform = "translateY(-35px)";
+                Navi_SlideUp.style.height = '70px';
+                btn_all_menu.style.height = '70px';
+                MenuBar.style.height = '70px';
+                MenuBar.style.lineHeight = '70px';
+
+            } else {
+                Navi_SlideUp.style.transform = "translateY(0)";
+                AllMENU.style.transform = "translateY(0)";
+                Navi_SlideUp.style.height = '90px';
+                btn_all_menu.style.height = '90px';
+                MenuBar.style.height = '90px';
+                MenuBar.style.lineHeight = '90px';
+            }
+        });
+        // 최상단 네비바 슬라이드
+        // yoseb 수정
+        // eunmin 수정
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const searchButton = document.querySelector('.search_btn');
+            const sideBarRight = document.querySelector('.side_bar_right');
+            const rightCloseButton = document.querySelector('.right_close');
+            const Opacity = document.querySelector('.opacityScreen');
+            const body = document.body;
+            let isOpen = false;
+
+            searchButton.addEventListener('click', function() {
+                if (isOpen) {
+                    sideBarRight.style.animationName = 'slideOut';
+                    Opacity.style.display = 'none';
+                } else {
+                    sideBarRight.style.animationName = 'slideIn';
+                    Opacity.style.display = 'block';
+                }
+                isOpen = !isOpen;
+            });
+
+            rightCloseButton.addEventListener('click', function() {
+                sideBarRight.style.animationName = 'slideOut';
+                Opacity.style.display = 'none';
+                isOpen = false;
+            });
+        });
+        // 우측 사이드바 작동
+
+        function toggleMenuIcon() {
+            const btnMenu = document.querySelector('.btn-menu');
+            const X_bar_top = document.querySelector('.X_bar_top');
+            const X_bar_mid = document.querySelector('.X_bar_mid');
+            const X_bar_bottom = document.querySelector('.X_bar_bottom');
+            const AllMENU = document.querySelector('.AllMENU');
+            const Opacity = document.querySelector('.opacityScreen');
+            const AllMENU_left = document.querySelector('.AllMENU_left');
+            const AllMENU_right = document.querySelector('.AllMENU_right');
+
+
+            if (btnMenu.classList.contains('active')) {
+                btnMenu.classList.remove('active');
+                X_bar_top.style.transform = 'none';
+                X_bar_mid.style.transform = 'none';
+                X_bar_mid.style.opacity = '1';
+                X_bar_bottom.style.transform = 'none';
+                AllMENU.style.opacity = '0';
+                AllMENU.style.height = '0';
+                Opacity.style.display = 'none';
+                AllMENU_left.style.visibility = 'hidden';
+                AllMENU_right.style.visibility = 'hidden';
+
+            } else {
+                btnMenu.classList.add('active');
+                X_bar_top.style.transform = 'rotate(45deg) translate(3px, 3px)';
+                X_bar_mid.style.transform = 'translateX(-25px)';
+                X_bar_mid.style.opacity = '0';
+                X_bar_bottom.style.transform = 'rotate(-45deg) translate(2px, -2px)';
+                AllMENU.style.opacity = '1';
+                AllMENU.style.height = '630px';
+                Opacity.style.display = 'block';
+                AllMENU_left.style.visibility = 'visible';
+                AllMENU_right.style.visibility = 'visible';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.btn-menu').addEventListener('click', toggleMenuIcon);
+            // 햄버거 버튼
+        });
+    </script>
+    <!-- ================================================================================== 스크립트 구역 ================================================================================== -->
+</head>
+
+<body>
+<div th:replace="~{headAndFoot/header :: common_header}"></div>
+<!-- ================================================================================== 헤더 끝 ================================================================================== -->
+
+<div class="container">
+    <div style="width:100%;">
+        <h2 style="text-align: center; margin-top: 15%; width:100%;" class="reason" th:unless="${status}"
+            th:if="${itemCategory}!=null" th:text="'상품 카테고리 <'+${itemCategory}+'>'">상품 카테고리</h2>
+        <h2 style="text-align: center; margin-top: 20%; width:100%;" th:if="${status}" th:text="'검색한 상품이 조회되지 않습니다.'"></h2>
+    </div>
+<section class="main_item_zone" th:unless="${status}">
+    <section class="main_left">
+        <div>
+            <h2 class="reason">이유있는<br>베스트 아이템</h2>
+        </div>
+    </section>
+    <section class="main_items">
+        <th:block th:each="item : ${itemFind}">
+        <div class="item_detail" th:onclick="|location.href='@{/item/detail/{itemId}(itemId=${item.itemId})}'|">
+            <img th:src="${item.imageName1}">
+            <img th:src="${item.imageName2}">
+            <br>
+            <div class="main_item_imgbox"><a
+            th:field="${item.title}" th:text="${item.title}">바이오더마
+                </a></div>
+            <p class="price">
+                <span th:field="${item.priceDiscount}" th:text="${#numbers.formatInteger(item.priceDiscount,3,'COMMA')}">36,000</span>
+                <span>원</span>
+                <del class="cost_price">
+                    <span th:field="${item.price}" th:text="${#numbers.formatInteger(item.price,3,'COMMA')}">48,000</span>
+                    <span>원</span>
+                </del>
+            </p>
+
+            <img src="/imgs/item_status_3.gif" class="status">
+            <hr>
+        </div>
+        </th:block>
+    </section>
+</section>
+</div>
+<!-- 메인이미지 -->
+
+<div th:replace="~{headAndFoot/footer :: common_footer}"></div>
+
+</body>
+</html>

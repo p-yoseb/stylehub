@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="common_headerLink(title,links,scripts,style)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:replace="${title}">스타일허브</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/home.css">
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+    </script>
+    <script>
+        window.addEventListener("scroll", function() {
+            var Navi_SlideUp = document.querySelector(".fix_header_wrap");
+            var btn_all_menu = document.querySelector(".btn-all-menu");
+            var AllMENU = document.querySelector(".AllMENU");
+            var MenuBar = document.querySelector(".menu_bar");
+            var MyMenu = document.querySelector(".mypage_menu");
+            var cateBox1 = document.querySelector(".cateBox1");
+            var cateBox2 = document.querySelector(".cateBox2");
+            var cateBox3 = document.querySelector(".cateBox3");
+            var cateBox4 = document.querySelector(".cateBox4");
+            var cateBox5 = document.querySelector(".cateBox5");
+            var cateBox6 = document.querySelector(".cateBox6");
+            var cateBox7 = document.querySelector(".cateBox7");
+            var cateBox8 = document.querySelector(".cateBox8");
+
+
+            if (window.scrollY >= 200) {
+                Navi_SlideUp.style.transform = "translateY(-35px)";
+                AllMENU.style.transform = "translateY(-35px)";
+                MyMenu.style.top = "78px";
+                cateBox1.style.transform = "translate(-50%, -10px)";
+                cateBox2.style.transform = "translate(-50%, -10px)";
+                cateBox4.style.transform = "translate(-50%, -10px)";
+                cateBox5.style.transform = "translate(-50%, -10px)";
+                cateBox3.style.transform = "translate(-50%, -10px)";
+                cateBox6.style.transform = "translate(-50%, -10px)";
+                cateBox7.style.transform = "translate(-50%, -10px)";
+                cateBox8.style.transform = "translate(-50%, -10px)";
+                Navi_SlideUp.style.height = '70px';
+                btn_all_menu.style.height = '70px';
+                MenuBar.style.height = '70px';
+                MenuBar.style.lineHeight = '70px';
+
+            } else {
+                Navi_SlideUp.style.transform = "translateY(0)";
+                AllMENU.style.transform = "translateY(0)";
+                MyMenu.style.top = "88px";
+                cateBox1.style.transform = "translate(-50%, 0)";
+                cateBox2.style.transform = "translate(-50%, 0)";
+                cateBox3.style.transform = "translate(-50%, 0)";
+                cateBox4.style.transform = "translate(-50%, 0)";
+                cateBox5.style.transform = "translate(-50%, 0)";
+                cateBox6.style.transform = "translate(-50%, 0)";
+                cateBox7.style.transform = "translate(-50%, 0)";
+                cateBox8.style.transform = "translate(-50%, 0)";
+                Navi_SlideUp.style.height = '90px';
+                btn_all_menu.style.height = '90px';
+                MenuBar.style.height = '90px';
+                MenuBar.style.lineHeight = '90px';
+            }
+        });
+        // 최상단 네비바 슬라이드
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const searchButton = document.querySelector('.search_btn');
+            const sideBarRight = document.querySelector('.side_bar_right');
+            const rightCloseButton = document.querySelector('.right_close');
+            const Opacity = document.querySelector('.opacityScreen');
+            let isOpen = false;
+
+            searchButton.addEventListener('click', function() {
+                if (isOpen) {
+                    sideBarRight.style.animationName = 'slideOut';
+                    Opacity.style.display = 'none';
+                } else {
+                    sideBarRight.style.animationName = 'slideIn';
+                    Opacity.style.display = 'block';
+                }
+                isOpen = !isOpen;
+            });
+
+            rightCloseButton.addEventListener('click', function() {
+                sideBarRight.style.animationName = 'slideOut';
+                Opacity.style.display = 'none';
+                isOpen = false;
+            });
+        });
+        // 우측 사이드바 작동
+
+        function toggleMenuIcon() {
+            const btnMenu = document.querySelector('.btn-menu');
+            const X_bar_top = document.querySelector('.X_bar_top');
+            const X_bar_mid = document.querySelector('.X_bar_mid');
+            const X_bar_bottom = document.querySelector('.X_bar_bottom');
+            const AllMENU = document.querySelector('.AllMENU');
+            const Opacity = document.querySelector('.opacityScreen');
+            const AllMENU_left = document.querySelector('.AllMENU_left');
+            const AllMENU_right = document.querySelector('.AllMENU_right');
+
+            
+            if (btnMenu.classList.contains('active')) {
+                btnMenu.classList.remove('active');
+                X_bar_top.style.transform = 'none';
+                X_bar_mid.style.transform = 'none';
+                X_bar_mid.style.opacity = '1';
+                X_bar_bottom.style.transform = 'none';
+                AllMENU.style.opacity = '0';
+                AllMENU.style.height = '0';
+                Opacity.style.display = 'none';
+                AllMENU_left.style.visibility = 'hidden';
+                AllMENU_right.style.visibility = 'hidden';
+
+            } else {
+                btnMenu.classList.add('active');
+                X_bar_top.style.transform = 'rotate(45deg) translate(3px, 3px)';
+                X_bar_mid.style.transform = 'translateX(-25px)';
+                X_bar_mid.style.opacity = '0';
+                X_bar_bottom.style.transform = 'rotate(-45deg) translate(2px, -2px)';
+                AllMENU.style.opacity = '1';
+                AllMENU.style.height = '630px';
+                Opacity.style.display = 'block';
+                AllMENU_left.style.visibility = 'visible';
+                AllMENU_right.style.visibility = 'visible';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('.btn-menu').addEventListener('click', toggleMenuIcon);
+        // 햄버거 버튼
+    });
+    </script>
+<!-- ================================================================================== 스크립트 구역 ================================================================================== -->
+
+    <th:block th:replace="${scripts}"></th:block>
+    <th:block th:replace="${links}"></th:block>
+    <th:block th:replace="${style}"></th:block>
+</head>
+
+<body>
+<header class="header" th:fragment="common_header">
+    <div class="side_bar_right">
+        <div class="right_close xi-close"></div>
+        <section>
+            <form th:action="@{/item}" method="post">
+            <h1 class="search">검색</h1>
+            <div class="search_bar">
+                <input type="text" th:field="${itemFindAll.title}"><button type="submit" class="xi-search"></button>
+            </div>
+            <h2 class="search_keyword">인기검색어</h2>
+            </form>
+        </section>
+
+        <div class="keyword_list">
+            <div class="key_langth_2"># 스킨</div>
+            <div class="key_langth_2"># 향수</div>
+            <div class="key_langth_4"># 인테리어</div>
+            <div class="key_langth_3"># 키보드</div>
+            <div class="key_langth_2"># 캠핑</div>
+            <div class="key_langth_4"># 바디워시</div>
+            <div class="key_langth_3"># 샴푸</div>
+            <div class="key_langth_3"># 비타민</div>
+            <div class="key_langth_5"># 강아지식품</div>
+            <div class="key_langth_5"># 고양이식품</div>
+        </div>
+    </div>
+    <!-- 사이드 바 -->
+
+    <div class="opacityScreen"></div>
+    <!-- 투명처리 화면 -->
+
+
+    <div class="side_scroll">
+        <div class=" xi-angle-up-thin" id="go_top"></div>
+        <div class=" xi-angle-down-thin" id="go_bottom"></div>
+    </div>
+    <!-- 사이드 스크롤-->
+
+    <div class="AllMENU">
+        <div class="AllMENU_left">
+            <ul>
+                <li th:each="categoryTitle : ${categoryList}"><a
+                        th:href="@{/item/title/{categoryTitleId}(categoryTitleId=${categoryTitle.titleId})}"
+                        th:field="${categoryTitle.categoryTitle}" th:text="${categoryTitle.categoryTitle}"
+                        style="color:black; text-decoration: none;">카테고리 대주제</a>
+                    <ul>
+                        <li th:each="category : ${categoryTitle.categories}"><a th:href="@{/item/{categoryId}(categoryId=${category.id})}" th:field="${category.id}" th:text="${category.category}" style="color:inherit; text-decoration: none;"
+                        >카테고리</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            </div>
+            <div class="AllMENU_right">
+                <img class="newJeans" src="/imgs/newjeans.jpg">
+                <img class="btsV" src="/imgs/v.jpg">
+            </div>
+        </div>
+        
+    </div>
+    <!-- 햄버거 버튼 전체 카테고리 -->
+
+    <div class="header_wrap">
+        <a href="https://pf.kakao.com/_VGxmxeu" target="_blank" class="join_kakao">
+            카카오톡 채널 추가 시 3천원 추가 할인!
+        </a>
+    </div>
+    <div class="fix_header_wrap">
+        <div class="lang_box"><p>KOR</p> <i class="xi-caret-down-min"></i>
+            <div class="lang_list">
+                <a href="#" class="kor">KOR</a><br>
+                <a href="#" class="eng">ENG</a><br>
+                <a href="#" class="jpn">JPN</a><br>
+                <a href="#" class="chn">CHN</a>
+            </div>
+        </div>
+        <div class="btn-all-menu">
+            <a href="#" class="btn-menu">
+                <span class="X_bar_top"></span>
+                <span class="X_bar_mid"></span>
+                <span class="X_bar_bottom"></span>
+            </a>
+            <!-- 햄버거 버튼 -->
+            <a th:href="@{/}" class="main_logo"><img src="/imgs/1.png"></a>
+            <!-- 네비바 좌측-->
+        </div>
+
+
+        <ul class="menu_bar">
+            <li><a  class="up_icon" th:text="${ageCategory.get(0).categoryTitle}"
+                                   th:href="@{/item/title/{categoryTitleId}(categoryTitleId=${ageCategory.get(0).titleId})}">카테고리 대주제</a>
+                <ul class="cateBox1">
+                    <li th:each="category : ${ageCategory.get(0).categories}">
+                        <a th:href="@{/item/{categoryId}(categoryId=${category.id})}"
+                           th:text="${category.category}">카테고리</a>
+                    </li>
+                </ul>
+            </li>
+            
+            <li><a style="color: #27a2d9;" th:text="${ageCategory.get(1).categoryTitle}"
+                                           th:href="@{/item/title/{categoryTitleId}(categoryTitleId=${ageCategory.get(1).titleId})}">카테고리 대주제</a>
+                <ul class="cateBox2">
+                    <li th:each="category : ${ageCategory.get(1).categories}">
+                        <a th:href="@{/item/{categoryId}(categoryId=${category.id})}"
+                           th:text="${category.category}">카테고리</a>
+                    </li>
+                </ul>
+            </li>
+            
+            <li><a th:text="${ageCategory.get(2).categoryTitle}"
+                   th:href="@{/item/title/{categoryTitleId}(categoryTitleId=${ageCategory.get(2).titleId})}">카테고리 대주제</a>
+                <img src="/imgs/game.png" class="game">
+                <ul class="cateBox3">
+                    <li th:each="category : ${ageCategory.get(2).categories}">
+                        <a th:href="@{/item/{categoryId}(categoryId=${category.id})}"
+                           th:text="${category.category}">카테고리</a>
+                    </li>
+                </ul>
+            </li>
+            
+            <li>
+                <a th:text="${ageCategory.get(3).categoryTitle}"
+                   th:href="@{/item/title/{categoryTitleId}(categoryTitleId=${ageCategory.get(3).titleId})}">카테고리 대주제</a>
+                <ul class="cateBox4">
+                    <li th:each="category : ${ageCategory.get(3).categories}">
+                        <a th:href="@{/item/{categoryId}(categoryId=${category.id})}"
+                           th:text="${category.category}">카테고리</a>
+                    </li>
+                </ul>
+            </li>
+            
+            <li>
+                <a th:text="${ageCategory.get(4).categoryTitle}"
+                   th:href="@{/item/title/{categoryTitleId}(categoryTitleId=${ageCategory.get(4).titleId})}">카테고리 대주제</a>
+                <ul class="cateBox5">
+                    <li th:each="category : ${ageCategory.get(4).categories}">
+                        <a th:href="@{/item/{categoryId}(categoryId=${category.id})}"
+                           th:text="${category.category}">카테고리</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a th:text="${ageCategory.get(5).categoryTitle}"
+                   th:href="@{/item/title/{categoryTitleId}(categoryTitleId=${ageCategory.get(5).titleId})}">카테고리 대주제</a>
+                <ul class="cateBox6">
+                    <li th:each="category : ${ageCategory.get(5).categories}">
+                        <a th:href="@{/item/{categoryId}(categoryId=${category.id})}"
+                           th:text="${category.category}">카테고리</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a th:text="${ageCategory.get(6).categoryTitle}"
+                   th:href="@{/item/title/{categoryTitleId}(categoryTitleId=${ageCategory.get(6).titleId})}">카테고리 대주제</a>
+                <ul class="cateBox7">
+                    <li th:each="category : ${ageCategory.get(6).categories}">
+                        <a th:href="@{/item/{categoryId}(categoryId=${category.id})}"
+                           th:text="${category.category}">카테고리</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a th:text="${ageCategory.get(7).categoryTitle}"
+                   th:href="@{/item/title/{categoryTitleId}(categoryTitleId=${ageCategory.get(7).titleId})}">카테고리 대주제</a>
+                <ul class="cateBox8">
+                    <li th:each="category : ${ageCategory.get(7).categories}">
+                        <a th:href="@{/item/{categoryId}(categoryId=${category.id})}"
+                           th:text="${category.category}">카테고리</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <!-- 메뉴 카테고리 -->
+
+        <div class="mypage">
+            <a href="#"><i class="search_btn xi-search"></i></a>
+            <a th:href="@{/buy/basket}"><i class="xi-cart-o"></i></a>
+
+            <div class="btn_mypage" th:unless="${managerCheck}">
+                <a th:href="@{/mypage}" th:if="${myPageCheck}">
+                    <i class="xi-user-o"></i>
+                    <ul class="mypage_menu">
+                        <li><a th:href="@{/mypage/detail}" style="color:inherit; text-decoration: none;">회원정보</a></li>
+                        <li><a th:href="@{/mypage/order}" style="color:inherit; text-decoration: none;">주문내역</a></li>
+                        <li><a th:href="@{/mypage/deposit}" style="color:inherit; text-decoration: none;">예치금내역</a></li>
+                        <li><a th:href="@{/mypage/interest}" style="color:inherit; text-decoration: none;">관심상품</a></li>
+                        <li>
+                            <a th:href="@{/logout/}" style="color:inherit; text-decoration: none;">로그아웃</a>
+                        </li>
+                    </ul>
+                </a>
+                <a th:href="@{/mypage}" th:unless="${myPageCheck}">
+                    <i class="xi-user-o"></i>
+                    <ul class="mypage_menu">
+                        <li><a th:href="@{/login/add}" style="color:inherit; text-decoration: none;">회원가입</a></li>
+                        <li><a th:href="@{/mypage/order}" style="color:inherit; text-decoration: none;">주문내역</a></li>
+                        <li><a th:href="@{/mypage/deposit}" style="color:inherit; text-decoration: none;">예치금내역</a></li>
+                        <li><a th:href="@{/mypage/interest}" style="color:inherit; text-decoration: none;">관심상품</a></li>
+                        <li><a th:href="@{/login/}" style="color:inherit; text-decoration: none;">로그인</a></li>
+                    </ul>
+                </a>
+            </div>
+
+            <div class="btn_mypage" th:if="${managerCheck}">
+                <a th:href="@{/mypage}">
+                    <i class="xi-user-o"></i>
+                    <ul class="mypage_menu">
+                        <li><a th:href="@{/manager/user}" style="color:inherit; text-decoration: none;">회원관리</a></li>
+                        <li><a th:href="@{/manager/item}" style="color:inherit; text-decoration: none;">상품관리</a></li>
+                        <li>
+                            <a th:href="@{/logout/}" style="color:inherit; text-decoration: none;">로그아웃</a>
+                        </li>
+                    </ul>
+                </a>
+            </div>
+
+
+        </div>
+        
+    
+        <!-- 마이페이지 버튼구역 -->
+        
+    </div>
+    <!-- 상단 네비바 끝 -->
+</header>
+
+</body>
+</html>

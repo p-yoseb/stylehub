@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <style>
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body class="text-center">
+<main class="form-signin">
+    <form th:action th:object="${loginForm}" method="post">
+        <img src="/imgs/2.png" class="logo_img">
+        <h1 class="site_name">𝑺𝒕𝒚𝒍𝒆 𝑯𝒖𝒃</h1>
+        <div class="home_zone">
+            <p class="xi-home-o" th:onclick="|location.href='@{/}'|"></p>
+        </div>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="id" placeholder="아이디 입력..." th:field="*{loginId}">
+            <label for="id">아이디</label>
+        </div>
+        <div class="field-error" th:errors="*{loginId}">상품명 카테고리 오류</div>
+
+        <div class="form-floating">
+            <input type="password" class="form-control" id="pwd" placeholder="Password" th:field="*{password}">
+            <label for="pwd">비밀번호</label>
+        </div>
+        <div class="field-error" th:errors="*{password}">상품명 카테고리 오류</div>
+
+        <div class="field-error" th:if="${loginError}">아이디 또는 비밀번호가 맞지 않습니다.</div>
+
+        <div class="login_btn_zone">
+            <div class="col sign_zone">
+                <p id="join" th:onclick="|location.href='@{/login/add}'|">회원가입</p>
+            </div>
+            <div class="col">
+                <button id="enter" type="submit">로그인</button>
+            </div>
+        </div>
+    </form>
+</main>
+</body>
+</html>

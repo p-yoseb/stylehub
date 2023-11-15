@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hello.project.repository.user.mybatisUser.UserMapper">
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        insert into User(category_id ,login_id ,password ,name ,email ,gender ,year ,month ,day ,postal ,address ,phone ,advertising ,deposit, amount, coupon, grade, ratio, admin)
+        values (#{categoryId}, #{loginId}, #{password}, #{name}, #{email}, #{gender}, #{year}, #{month}, #{day}, #{postal}, #{address}, #{phone}, #{advertising}, #{deposit}, #{amount}, #{coupon}, #{grade}, #{ratio}, #{admin})
+    </insert>
+
+    <select id="findById" resultType="hello.project.domain.user.user.User">
+        select id, category_id as categoryId, login_id as loginId,password ,name ,email ,gender ,year ,month ,day ,
+            postal ,address ,phone ,advertising ,deposit,
+            amount, coupon, grade, ratio, admin
+        from User
+        where id = #{id}
+    </select>
+
+    <select id="findByLonginId" resultType="hello.project.domain.user.user.User">
+        select id, category_id as categoryId, login_id as loginId,password ,name ,email ,gender ,year ,month ,day ,
+            postal ,address ,phone ,advertising ,deposit,
+            amount, coupon, grade, ratio, admin
+        from User
+        where login_id = #{loginId}
+    </select>
+
+    <select id="overlappedID" resultType="hello.project.domain.user.user.User">
+        select
+        from User
+        where login_id = #{loginId}
+    </select>
+
+    <select id="findByLoginId" resultType="hello.project.domain.user.user.User">
+        select id, login_id as loginId, password
+        from User
+        where login_id = #{loginId}
+    </select>
+
+    <select id="findAll" resultType="hello.project.domain.user.user.User">
+        select id, category_id as categoryId, login_id as loginId,password ,name ,email ,gender ,year ,month ,day ,
+            postal ,address ,phone ,advertising ,deposit,
+               amount, coupon, grade, ratio, admin
+        from User
+        <where>
+            <if test="loginId != null and loginId != ''">
+                or login_id like concat('%',#{loginId},'%','%','%','%','%','%','%','%','%','%','%','%','%','%','%','%','%')
+                or name like concat('%','%','%',#{loginId},'%','%','%','%','%','%','%','%','%','%','%','%','%','%','%')
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteUser">
+        delete from User
+        where id = #{userId}
+    </delete>
+
+    <update id="update">
+        update User
+        set name=#{user.name},
+            password=#{user.password},
+            year=#{user.year},
+            month=#{user.month},
+            day=#{user.day},
+            gender=#{user.gender},
+            address=#{user.address},
+            postal=#{user.postal},
+            email=#{user.email},
+            phone=#{user.phone},
+            advertising=#{user.advertising},
+            deposit=#{user.deposit},
+            amount=#{user.amount},
+            category_id=#{user.categoryId},
+            grade=#{user.grade},
+            ratio=#{user.ratio}
+        where id = #{userId}
+    </update>
+
+    <select id="countGender" resultType="Integer">
+        select count(gender)
+        from User
+        where gender = #{gender}
+    </select>
+</mapper>

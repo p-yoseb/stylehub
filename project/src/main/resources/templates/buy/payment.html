@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="headAndFoot/header :: common_headerLink(~{::title},~{::link},~{::script},~{::style})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스타일허브</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <style>
+        .container{
+            margin-top: 150px;
+        }
+        .item_detail{
+            cursor: pointer;
+        }
+        .item_detail>img:first-child{
+            display: block;
+        }
+        .item_detail:hover>img:first-child{
+            display: none;
+        }
+        .item_detail>img:nth-child(2){
+            display: none;
+        }
+        .item_detail:hover>img:nth-child(2){
+            display: block;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+    </script>
+
+    <script>
+        window.addEventListener("scroll", function() {
+            var Navi_SlideUp = document.querySelector(".fix_header_wrap");
+            var btn_all_menu = document.querySelector(".btn-all-menu");
+            var AllMENU = document.querySelector(".AllMENU");
+            var MenuBar = document.querySelector(".menu_bar");
+
+
+            if (window.scrollY >= 200) {
+                Navi_SlideUp.style.transform = "translateY(-35px)";
+                AllMENU.style.transform = "translateY(-35px)";
+                Navi_SlideUp.style.height = '70px';
+                btn_all_menu.style.height = '70px';
+                MenuBar.style.height = '70px';
+                MenuBar.style.lineHeight = '70px';
+
+            } else {
+                Navi_SlideUp.style.transform = "translateY(0)";
+                AllMENU.style.transform = "translateY(0)";
+                Navi_SlideUp.style.height = '90px';
+                btn_all_menu.style.height = '90px';
+                MenuBar.style.height = '90px';
+                MenuBar.style.lineHeight = '90px';
+            }
+        });
+        // 최상단 네비바 슬라이드
+        // yoseb 수정
+        // eunmin 수정
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const searchButton = document.querySelector('.search_btn');
+            const sideBarRight = document.querySelector('.side_bar_right');
+            const rightCloseButton = document.querySelector('.right_close');
+            const Opacity = document.querySelector('.opacityScreen');
+            const body = document.body;
+            let isOpen = false;
+
+            searchButton.addEventListener('click', function() {
+                if (isOpen) {
+                    sideBarRight.style.animationName = 'slideOut';
+                    Opacity.style.display = 'none';
+                } else {
+                    sideBarRight.style.animationName = 'slideIn';
+                    Opacity.style.display = 'block';
+                }
+                isOpen = !isOpen;
+            });
+
+            rightCloseButton.addEventListener('click', function() {
+                sideBarRight.style.animationName = 'slideOut';
+                Opacity.style.display = 'none';
+                isOpen = false;
+            });
+        });
+        // 우측 사이드바 작동
+
+        function toggleMenuIcon() {
+            const btnMenu = document.querySelector('.btn-menu');
+            const X_bar_top = document.querySelector('.X_bar_top');
+            const X_bar_mid = document.querySelector('.X_bar_mid');
+            const X_bar_bottom = document.querySelector('.X_bar_bottom');
+            const AllMENU = document.querySelector('.AllMENU');
+            const Opacity = document.querySelector('.opacityScreen');
+            const AllMENU_left = document.querySelector('.AllMENU_left');
+            const AllMENU_right = document.querySelector('.AllMENU_right');
+
+
+            if (btnMenu.classList.contains('active')) {
+                btnMenu.classList.remove('active');
+                X_bar_top.style.transform = 'none';
+                X_bar_mid.style.transform = 'none';
+                X_bar_mid.style.opacity = '1';
+                X_bar_bottom.style.transform = 'none';
+                AllMENU.style.opacity = '0';
+                AllMENU.style.height = '0';
+                Opacity.style.display = 'none';
+                AllMENU_left.style.visibility = 'hidden';
+                AllMENU_right.style.visibility = 'hidden';
+
+            } else {
+                btnMenu.classList.add('active');
+                X_bar_top.style.transform = 'rotate(45deg) translate(3px, 3px)';
+                X_bar_mid.style.transform = 'translateX(-25px)';
+                X_bar_mid.style.opacity = '0';
+                X_bar_bottom.style.transform = 'rotate(-45deg) translate(2px, -2px)';
+                AllMENU.style.opacity = '1';
+                AllMENU.style.height = '630px';
+                Opacity.style.display = 'block';
+                AllMENU_left.style.visibility = 'visible';
+                AllMENU_right.style.visibility = 'visible';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.btn-menu').addEventListener('click', toggleMenuIcon);
+            // 햄버거 버튼
+        });
+    </script>
+    <!-- ================================================================================== 스크립트 구역 ================================================================================== -->
+</head>
+
+<body>
+<div th:replace="~{headAndFoot/header :: common_header}"></div>
+<!-- ================================================================================== 헤더 끝 ================================================================================== -->
+
+<div class="container" style="margin:auto;">
+    <form th:action="@{/buy/paymentCompleted}" method="post">
+    <div style="margin-left: 40%; margin-top: 15%; justify-content: center;">
+        <h2 style="text-align: center; " class="reason">결제하기</h2>
+    </div>
+
+    <table class="table" style="margin-top: 5%; text-align: center; vertical-align: middle;">
+        <tr>
+            <th></th>
+            <th>상품명</th>
+            <th>가격</th>
+            <th>수량</th>
+            <th>합계</th>
+            <th></th>
+        </tr>
+        <tr th:each="itemBasket : ${itemBasketList}" style="margin:auto;">
+            <td style="width:15%;"><img th:src="${itemBasket.itemImage}" style="width:50%;"></td>
+            <td>
+                <a th:href="@{|/item/detail/${itemBasket.itemId}|}">
+                    <span th:text="${itemBasket.name}">상품명</span>
+                </a>
+            </td>
+            <td>
+                <p class="price">
+                    <span th:field="${itemBasket.totalPriceDiscount}" th:text="${#numbers.formatInteger(itemBasket.totalPriceDiscount,3,'COMMA')}">36,000</span>
+                    <span>원</span>
+                    <del class="cost_price">
+                        <span th:field="${itemBasket.totalPrice}" th:text="${#numbers.formatInteger(itemBasket.totalPrice*1.1,3,'COMMA')}">48,000</span>
+                        <span>원</span>
+                    </del>
+                </p>
+            </td>
+            <td th:text="${itemBasket.quantity}"></td>
+            <td>
+                <span th:text="${#numbers.formatInteger(itemBasket.totalPriceDiscount*itemBasket.quantity,3,'COMMA')}"></span>
+                <span>원</span>
+            </td>
+            <td style="width:10%;">
+                <button type="button" class="w-100 btn btn-outline-dark"
+                        th:onclick="|javascript:deleteBasket('${itemBasket.basketId}')|">삭제</button>
+            </td>
+        </tr>
+    </table>
+
+    <table class="table" style="border: solid white; text-align: right;"
+           th:if="${!itemBasketList.isEmpty()}">
+        <tr>
+            <td style="width:70%;"></td>
+            <td>
+                <span>총 구매금액</span>
+            </td>
+            <td>
+                <span th:text="${#numbers.formatInteger(priceTotalDisCount,3,'COMMA')}">19,900</span>
+                <span> 원</span>
+            </td>
+        </tr>
+        <tr>
+            <td style="width:70%;"></td>
+            <td>
+                <span>배송료</span>
+            </td>
+            <td>
+                <span>2,500</span>
+                <span> 원</span>
+            </td>
+        </tr>
+        <tr>
+            <td style="width:70%;"></td>
+            <td>
+                <span>결제 예정금액</span>
+            </td>
+            <td>
+                <span th:text="${#numbers.formatInteger(priceTotalDisCountDelivery,3,'COMMA')}">22,400</span>
+                <span> 원</span>
+            </td>
+        </tr>
+    </table>
+        <div th:unless="${!itemBasketList.isEmpty()}" style="text-align: center; margin:10%;">
+            <h3>장바구니 내역이 없습니다.</h3>
+        </div>
+
+    <hr class="my-5">
+
+    <div class="input-form-backgroud row my-5" style="width:85%; margin:50% auto;">
+        <div class="input-form col-md-12 mx-auto" style="width:80%;">
+            <h4 class="mb-3">
+                <p th:text="${user.name}+'회원님의 배송 정보'"></p></h4>
+            <div class="mb-3">
+                <label for="name">이름</label>
+                <input type="text" class="form-control" id="name" placeholder="이름" th:field="*{user.name}"
+                       readonly>
+            </div>
+
+            <div class="mb-3">
+                <label for="address">주소</label>
+                <input type="text" class="form-control" id="address" placeholder="주소를 입력해주세요."
+                       th:field="*{user.address}" readonly>
+            </div>
+
+            <div class="mb-3">
+                <label for="postal">우편번호</label>
+                <input type="text" class="form-control" id="postal" placeholder="우편번호를 입력해주세요."
+                       th:field="*{user.postal}" readonly>
+            </div>
+
+            <div class="mb-3">
+                <label for="email">이메일</label>
+                <input type="text" class="form-control" id="email" placeholder="이메일을 입력해주세요."
+                       th:field="*{user.email}" readonly>
+            </div>
+
+            <div class="mb-3">
+                <label for="phone">휴대폰</label>
+                <input type="text" class="form-control" id="phone" placeholder="-없이 입력해주세요"
+                       th:field="*{user.phone}" readonly>
+            </div>
+    </div>
+
+        <hr class="my-5">
+
+        <div class="input-form col-md-12 mx-auto" style="width:80%;">
+            <h4 class="mb-3">
+                <p>주문상품 할인적용</p>
+            </h4>
+            <table class="table" style="text-align: center; background: rgba(83,83,83,0.2);">
+                <tr>
+                    <th>상품금액</th>
+                    <th></th>
+                    <th>배송비</th>
+                    <th></th>
+                    <th>할인금액</th>
+                    <th></th>
+                    <th>결제 예상금액</th>
+                </tr>
+                <tr>
+                    <td>
+                        <span th:text="${#numbers.formatInteger(priceTotal,3,'COMMA')}"></span>
+                        <span>원</span>
+                    </td>
+                    <td>+</td>
+                    <td>
+                        <span>2,500</span>
+                        <span>원</span>
+                    </td>
+                    <td>-</td>
+                    <td>
+                        <span th:text="${#numbers.formatInteger(DisCount,3,'COMMA')}"></span>
+                        <span>원</span>
+                    </td>
+                    <td>=</td>
+                    <td>
+                        <span th:text="${#numbers.formatInteger(priceTotalDisCountDelivery,3,'COMMA')}"></span>
+                        <span>원</span>
+                    </td>
+                </tr>
+            </table>
+            <div>
+                <span>쿠폰사용</span>
+                <input type="checkbox">
+            </div>
+        </div>
+
+        <hr class="my-5">
+
+        <div class="input-form col-md-12 mx-auto" style="width:80%;">
+            <h4 class="mb-3">
+                <p>결제정보</p>
+            </h4>
+            <div class="row" style="border-top: 1px solid black; border-bottom: 1px solid black; text-align: left;
+padding:5%;">
+                <div style="width:30%; margin: auto;"><span>결제방법</span></div>
+                <div class="form-check" style="width:70%;">
+                    <th:block th:each="payment : ${OrderPayment}">
+                    <input type="radio" th:field="${orderList.payment}" th:value="${payment.description}" class="form-check-input" disabled>
+                    <label th:for="${#ids.prev('payment')}" th:text="${payment.description}" class="form-check-label">결제방법</label>
+                    <br>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-5">
+
+        <div class="input-form col-md-12 mx-auto" style="width:80%;">
+            <h4 class="mb-3">
+                <p>주문자동의</p>
+            </h4>
+            <div class="row" style="border-top: 1px solid black; border-bottom: 1px solid black; text-align: left;
+padding:5%;">
+                <div style="width:20%; margin: auto;"><span>개인정보 수집·이용</span></div>
+                <div style="width:80%;">
+                    <table class="table" style="text-align: left; line-height: 100%;">
+                        <tr style="text-align: center;">
+                            <th>목적</th>
+                            <th>항목</th>
+                            <th>보유기간</th>
+                        </tr>
+                        <tr>
+                            <td>주문자 정보 확인, 주문 내역 안내, 주문 내역 조회</td>
+                            <td>주문자 정보(연락처, 이메일)</td>
+                            <td rowspan="2">주문일로부터 90일까지 보유하며, 관계 법령에 따라 5년간 보관</td>
+                        </tr>
+                        <tr>
+                            <td>상품 배송(구매/환불/취소/교환)을 위한 수취인 정보</td>
+                            <td>수취인 정보(이름,연락처,주소)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row" style="text-align: left; padding:5%;" th:unless="${param.status}">
+                <div style="width:15%; margin: auto;"><span>주문동의</span></div>
+                <div style="width:5%;">
+                    <input type="checkbox" id="Ordering_consent1" th:onclick="|javascript:paymentAgree()|">
+                </div>
+                <div style="width:80%;">
+                    <label for="Ordering_consent1">상기 약관 및 개인정보 수집·이용에 대한 동의 내용과 결제정보를 확인하였으므로 구매진행에 동의합니다.</label>
+                </div>
+            </div>
+            <div class="row" style="text-align: left; padding:5%; color:red" th:if="${param.status}">
+                <div style="width:15%; margin: auto;"><span>주문동의</span></div>
+                <div style="width:5%;">
+                    <input type="checkbox" id="Ordering_consent2" th:onclick="|javascript:paymentAgree()|">
+                </div>
+                <div style="width:80%;">
+                    <label for="Ordering_consent2">상기 약관 및 개인정보 수집·이용에 대한 동의 내용과 결제정보를 확인하였으므로 구매진행에 동의합니다.</label>
+                    <p>* 주문동의에 체크해야 결제가 가능합니다.</p>
+                </div>
+            </div>
+            <div class="row" style="border-top: 1px solid black; border-bottom: 1px solid black; text-align: left;
+padding:3%; background: rgba(83,83,83,0.2);" >
+                <div style="width:25%; margin: auto;"><h3>최종결제금액</h3></div>
+                <div style="width:75%;">
+                    <h2>
+                        <span th:text="${#numbers.formatInteger(priceTotalDisCountDelivery,3,'COMMA')}"></span>
+                        <span> 원</span>
+                    </h2>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row" style="width:80%; margin:auto;">
+        <div class="col">
+            <button type="button" class="btn btn-outline-dark w-100" style="display: block;" id="final_payment"
+                    th:onclick="|location.href='@{/buy/payment/redirect}'|">결제하기</button>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-dark w-100" th:onclick="|location.href='@{/buy/basket}'|">취소하기</button>
+        </div>
+    </div>
+    </form>
+
+</div>
+
+<!-- 메인이미지 -->
+
+<div th:replace="~{headAndFoot/footer :: common_footer}"></div>
+
+<script th:inline="javascript">
+
+    /*<![CDATA[*/
+    function deleteBasket(basketId){
+
+        if(confirm("결제 상품을 삭제하시겠습니까?")){
+            location.href='/buy/payment/delete/'+basketId;
+        }
+    }
+
+    let i =0;
+    function paymentAgree(){
+        if(i%2 == 0){
+            $("#final_payment").attr('type','submit');
+            i++;
+        }else{
+            $("#final_payment").attr('type','button');
+            i++;
+        }
+
+    }
+
+    /*]]>*/
+
+</script>
+
+</body>
+</html>

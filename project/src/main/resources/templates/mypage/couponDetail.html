@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="headAndFoot/header :: common_headerLink(~{::title},~{::link},~{::script},~{::style})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스타일허브</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <style>
+        .container{
+            margin-top: 150px;
+        }
+        .item_detail{
+            cursor: pointer;
+        }
+        .item_detail>img:first-child{
+            display: block;
+        }
+        .item_detail:hover>img:first-child{
+            display: none;
+        }
+        .item_detail>img:nth-child(2){
+            display: none;
+        }
+        .item_detail:hover>img:nth-child(2){
+            display: block;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+    </script>
+
+    <script>
+
+    </script>
+    <!-- ================================================================================== 스크립트 구역 ================================================================================== -->
+</head>
+
+<body>
+<div th:replace="~{headAndFoot/header :: common_header}"></div>
+<!-- ================================================================================== 헤더 끝 ================================================================================== -->
+
+<div class="container" style="margin: 15% auto;">
+    <div style="width: 80%; margin:auto;">
+        <table class="table" style="text-align: center; margin: auto;">
+            <tr>
+                <th><a th:href="@{/mypage}">마이페이지 홈</a></th>
+                <th><a th:href="@{/mypage/order}">주문내역</a></th>
+                <th><a th:href="@{/mypage/deposit}">예치금내역</a></th>
+                <th><a th:href="@{/mypage/interest}">관심상품</a></th>
+                <th><a th:href="@{/mypage/detail}">회원정보</a></th>
+            </tr>
+        </table>
+        <table style="text-align: center; margin: 10% auto; width:100%;">
+            <tr>
+                <td class="row" style="width:100%; border-right: 1px solid lightgray;">
+                    <div style="width:20%; text-align: left; ">
+                        <span th:text="${user.grade}" style="color:lightblue;"></span>
+                    </div>
+
+                    <div style="width:50%; text-align: left;">
+                        <h3 >
+                            <span th:text="${user.name}">이름</span>
+                            <span> 회원님</span>
+                            <span th:text="'('+${user.loginId}+')'" style="color:lightgray; font-size:16px;">아이디</span>
+                        </h3>
+                        <span th:if="${user.grade}=='일반등급'"
+                              style="color:lightgray; font-size:12px;">적립금액 10만원 달성하면 VIP로 승급됩니다.</span>
+                        <span th:if="${user.grade}=='VIP등급'"
+                              style="color:lightgray; font-size:12px;">VIP등급입니다.</span>
+                    </div>
+
+                    <div style="width:30%; text-align: left; ">
+                        <select class="form-select" style="font-size: 8px;">
+                            <option value="0">등급혜택 보기</option>
+                            <option value="1">일반등급 할인율 0</option>
+                            <option value="2">VIP등급 할인율 5%</option>
+                        </select>
+                    </div>
+
+                </td>
+                <td style="width:15%; border-right: 1px solid lightgray;">
+                    <p>쿠폰</p>
+                    <span th:text="${#numbers.formatInteger(user.coupon,3,'COMMA')}">쿠폰</span>
+                    <span> 원</span>
+                </td>
+                <td style="width:15%; border-right: 1px solid lightgray;">
+                    <p>예치금</p>
+                    <span th:text="${#numbers.formatInteger(user.deposit,3,'COMMA')}">예치금</span>
+                    <span> 원</span>
+                </td>
+                <td style="width:15%;">
+                    <p>적립금</p>
+                    <span th:text="${#numbers.formatInteger(user.amount,3,'COMMA')}">적립금</span>
+                    <span> 원</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<!-- 메인이미지 -->
+
+<div th:replace="~{headAndFoot/footer :: common_footer}"></div>
+
+
+</body>
+</html>

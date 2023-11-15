@@ -1,0 +1,137 @@
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.slide_section{
+    width: 100%; height: 850px;
+    position: relative;
+    top: 125px;
+    
+    overflow: hidden;
+ 
+
+}
+
+.carousel-inner img{
+    width: 110%;
+    height: 850px;
+    left: -5%;
+}
+/* 슬라이드 영역 */
+
+.collection_wrap{
+    display: flex;
+    margin-top: 125px;
+    justify-content: center;
+    align-items: center;
+}
+
+.collection{
+    display: flex;
+    justify-content:space-around;
+    flex-wrap: wrap;
+    flex-direction: row; 
+    width: 100%; max-width: 1400px;
+    margin: 50px auto;
+}
+/* 컬렉션 영역 */
+
+.main_item_zone{
+    display: flex;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1920px; min-width: 1440px;
+    padding: 0 100px;
+}
+/* 상품 5개씩 정렬 */
+
+.main_left{
+    flex: 1;
+    margin-top: 50px;
+}
+
+.reason{
+    font-weight: 600; font-size: 35px;
+}
+
+.main_item_zone2{
+    display: flex;
+    margin: 0 auto; margin-top: 50px;
+    max-width: 1920px; min-width: 1440px;
+    padding: 0 auto;
+}
+/* 상품 4개씩 정렬 */
+
+.main_items{
+    display: grid; flex: 5;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 50px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid rgb(185, 185, 185);
+}
+
+.main_items img{
+    width: 100%;
+    height: auto;
+    margin-top: 50px;
+}
+
+.main_item_imgbox{
+    margin: 5px 0;
+}
+
+.main_item_imgbox>a{
+    text-decoration: none;
+    color: rgb(75,75,75,0.8);
+    font-size: 14px;
+    white-space: wrap;
+}
+
+.price{
+    margin: 0;
+}
+
+.cost_price{
+    padding-left: 10px;
+    font-size: 12px;
+    color: gray;
+}
+
+.main_items .status{
+    width: 57PX;
+    height: 19px;
+    padding-right: 3px;
+    margin: 0;
+}
+
+.main_items2{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 25px;
+    flex: 4;
+}
+
+.main_items .status_size{
+    width: 39PX;
+    height: 19px;
+    padding-right: 3px;
+    margin: 0;
+}
+
+.main_items2 img{
+    width: 100%;
+    height: auto;
+    margin-top: 50px;
+}
+.main_items2 .status{
+    width: 57PX;
+    height: 19px;
+    padding-right: 3px;
+    margin: 0;
+}
+.main_items2 .status_size{
+    width: 39PX;
+    height: 19px;
+    padding-right: 3px;
+    margin: 0;
+}

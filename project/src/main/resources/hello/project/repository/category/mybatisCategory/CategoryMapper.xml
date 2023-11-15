@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hello.project.repository.category.mybatisCategory.CategoryMapper">
+    <select id="findAll" resultType="hello.project.domain.category.category.CategorySecond">
+        select id,
+               (select category_title from CategoryTitle where CategoryTitle.id = Category.title_id) as categoryTitle,
+               category
+        from Category
+    </select>
+
+    <select id="findById" resultType="hello.project.domain.category.category.CategorySecond">
+        select id,
+               (select category_title from CategoryTitle where CategoryTitle.id = Category.title_id) as categoryTitle,
+               category
+        from Category
+        where id = #{id}
+    </select>
+
+    <select id="AgeCategoryFindByAge" resultType="hello.project.domain.category.ageCategory.AgeCategory">
+        select id,
+               age,
+               title_id1 as titleId1,
+               title_id2 as titleId2,
+               title_id3 as titleId3,
+               title_id4 as titleId4,
+               title_id5 as titleId5,
+               title_id6 as titleId6,
+               title_id7 as titleId7,
+               title_id8 as titleId8
+        from AgeCategory
+        where age = #{age}
+    </select>
+
+    <select id="CategoryTitleFindById" resultType="hello.project.domain.category.categoryTitle.CategoryTitle">
+        select id,
+               category_title as categoryTitle
+        from CategoryTitle
+        where id = #{titleId}
+    </select>
+
+    <select id="CategoryFindByTitleId" resultType="hello.project.domain.category.category.Category">
+        select id,
+               title_id as titleId,
+               category
+        from Category
+        where title_id = #{titleId}
+    </select>
+
+    <select id="CategoryFindById" resultType="hello.project.domain.category.category.Category">
+        select id,
+               title_id as titleId,
+               category
+        from Category
+        where id = #{categoryId}
+    </select>
+
+    <select id="categoryTitleFindAll" resultType="hello.project.domain.category.categoryTitle.CategoryTitle">
+        select id,
+               category_title as categoryTitle
+        from CategoryTitle
+    </select>
+</mapper>

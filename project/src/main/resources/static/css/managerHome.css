@@ -1,0 +1,248 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.bodySection{
+    width: 1002px;
+    height: 900px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.managerMenu{
+    position: relative;
+    top: 170px;
+    width: 100%;
+    height: 70px;
+    margin: 0 0 15px 0;
+}
+
+.managerMenu ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px 50px;
+    margin: 0;
+    background-color: rgb(50, 50, 50);
+}
+
+.managerMenu ul li{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.managerMenu ul li a{
+    color: white;
+    text-decoration: none;
+}
+
+.managerMenu ul>li:nth-child(1){
+    font-size: 26px;
+    font-weight: 600;
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+    height: 100%;
+    -webkit-user-select: none;
+}
+.managerMenu ul>li:nth-child(2){
+    font-size: 22px;
+    height: 80%;
+}
+.managerMenu ul>li:nth-child(3){
+    font-size: 22px;
+    height: 80%;
+}
+.managerMenu ul>li:nth-child(4){
+    font-size: 20px;
+    height: 80%;
+}
+.managerMenu ul>li:nth-child(n+2):nth-child(-n+6):hover>a {
+    text-decoration: underline;
+}
+
+.top_zone{
+    position: relative;
+    top: 200px;
+    border: 2px solid rgb(37, 110, 33);
+    border-radius: 5px;
+}
+
+.bottom_zone{
+    position: relative;
+    top: 250px;
+    border: 2px solid rgb(211, 91, 9);
+    border-radius: 5px;
+}
+
+.button_zone{
+    position: absolute;
+    right: 0px;
+    top: -30px;
+    height: 30px;
+    display: flex;
+}
+
+.button_zone input{
+    width: 175px;
+    height: 20px;
+}
+
+.xi-calendar{
+    font-size: 20px;
+    cursor: pointer;
+    -webkit-user-select: none;
+}
+
+.table1{
+    width: 1000px;
+    height: 300px;
+    border-radius: 5px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.table2{
+    width: 1000px;
+    height: 220px;
+    border-radius: 5px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.left_top{
+    margin: 20px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 27px;
+}
+
+.FirstTable{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 950px;
+    height: 120px;
+    margin-bottom: 5px;
+}
+
+.FirstTable th{
+    line-height: 50px;
+}
+
+.SecondTable{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 950px;
+    height: 120px;
+    margin-bottom: 5px;
+}
+
+.SecondTable th{
+    line-height: 60px;
+}
+
+thead th{
+    background-color: rgb(50, 50, 50);
+    color: white;
+    text-align: center;
+    border: 1px solid white;
+    border-radius: 10px 10px 0 0;
+}
+
+tbody th{
+    text-align: center;
+    border: 1px solid lightgray;
+}
+
+.button_zone img{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.datepicker{
+    pointer-events: none;
+    -webkit-user-select: none;
+}
+
+.ui-datepicker-trigger{
+    margin: 0 5px;
+}
+
+.hasDatepicker{
+    -webkit-user-select: none;
+}
+
+.printer, .printButton{
+    width: 20px;
+    height: 20px;
+    display: flex;
+    border: none;
+}
+
+.chart_zone{
+    position: relative;
+    width: 1002px;
+    height: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-user-select: none;
+}
+
+.left_chart{
+    position: absolute;
+    top: 70px;
+    left: -60px;
+    width: 180%;
+}
+
+.right_chart{
+    position: absolute;
+    top: 0;
+    right: -20px;
+    width: 50%;
+    height: 300px;
+    z-index: 1;
+}
+
+#chartdiv1 {
+    width: 100%;
+    height: 300px;
+}
+
+#chartdiv2 {
+    width: 40%;
+    height: 200px;
+}
+
+.white_box1{
+    left: 5px;
+    top: 278px;
+    width: 55px;
+    height: 20px;
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+}
+
+.white_box2{
+    left: 5px;
+    top: 179px;
+    width: 55px;
+    height: 20px;
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+}

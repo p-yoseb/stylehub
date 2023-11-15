@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hello.project.repository.buy.mybatisBuy.BuyMapper">
+    <insert id="ListSave" useGeneratedKeys="true" keyProperty="id">
+        insert into OrderList(userId, payment, total_price)
+        values (#{userId}, #{payment}, #{totalPrice})
+    </insert>
+
+    <select id="ListfindById" resultType="hello.project.domain.buy.orderList.OrderList">
+        select id, userId, payment, total_price as totalPrice
+        from OrderList
+        where id = #{listId}
+    </select>
+
+    <select id="ListfindByUserId" resultType="hello.project.domain.buy.orderList.OrderList">
+        select id, userId, payment, total_price as totalPrice
+        from OrderList
+        where userId = #{userId}
+    </select>
+
+    <delete id="ListDelete">
+        delete from OrderList
+        where id = #{listId}
+    </delete>
+
+    <update id="ListUpdate">
+        update OrderList
+        set userId=#{orderList.userId},
+            payment=#{orderList.payment},
+            total_price=#{orderList.totalPrice}
+        where id = #{listId}
+    </update>
+
+
+    <insert id="DetailSave" useGeneratedKeys="true" keyProperty="id">
+        insert into OrderDetail(order_list_id, item_option_id, quantity, total_price)
+        values (#{orderListId}, #{itemOptionId}, #{quantity}, #{totalPrice})
+    </insert>
+
+    <select id="DetailfindById" resultType="hello.project.domain.buy.orderDetail.OrderDetail">
+        select id, order_list_id as orderListId, item_option_id as itemOptionId, quantity, total_price as totalPrice
+        from OrderDetail
+        where id = #{detailId}
+    </select>
+
+    <select id="DetailfindByListId" resultType="hello.project.domain.buy.orderDetail.OrderDetail">
+        select id, order_list_id as orderListId, item_option_id as itemOptionId, quantity, total_price as totalPrice
+        from OrderDetail
+        where order_list_id = #{orderListId}
+    </select>
+
+    <select id="DetailfindByOptionId" resultType="hello.project.domain.buy.orderDetail.OrderDetail">
+        select id, order_list_id as orderListId, item_option_id as itemOptionId, quantity, total_price as totalPrice
+        from OrderDetail
+        where item_option_id = #{itemOptionId}
+    </select>
+
+    <delete id="DetailDelete">
+        delete from OrderDetail
+        where id = #{detailId}
+    </delete>
+
+
+    <select id="countId" resultType="Integer">
+        select count(id)
+        from OrderList
+    </select>
+
+    <select id="countUserId" resultType="Integer">
+        select count(distinct userId)
+        from OrderList
+    </select>
+
+    <select id="sumPrice" resultType="Integer">
+        select sum(total_price)
+        from OrderList
+    </select>
+
+
+    <select id="countCTR" resultType="hello.project.domain.buy.CTR">
+        select id, ctr
+        from CTR
+        where id = 1
+    </select>
+
+    <update id="updateCTR">
+        update CTR
+        set ctr=#{ctr}
+        where id = 1
+    </update>
+
+
+</mapper>

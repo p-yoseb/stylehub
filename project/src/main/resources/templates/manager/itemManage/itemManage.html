@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="headAndFoot/header :: common_headerLink(~{::title},~{::link},~{::script},~{::style})">
+    <meta charset="UTF-8">
+    <title>상품관리 페이지</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <style>
+        .container{
+            margin-top:150px;
+        }
+        body{
+            /* color:black; */
+            color:inherit;
+            text-decoration: none;
+            /* 밑줄제거 */
+        }
+    </style>
+    <script></script>
+</head>
+<body>
+<div th:replace="~{headAndFoot/header :: common_header}"></div>
+
+<div class="container">
+    <div class="py-5 text-center">
+        <h3>상품 전체</h3>
+    </div>
+
+    <form method="get" class="form-inline">
+    <div class="row">
+        <div class="col">
+            <button th:onclick="|location.href='@{/manager/item/add}'|" class="btn btn-primary" type="button">상품 추가</button>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="상품명을 입력하세요" th:field="${itemSearch.itemName}">
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-secondary">상품명 조회</button>
+        </div>
+    </div>
+    </form>
+    <hr class="my-4">
+    <table class="table" style="vertical-align: middle;">
+        <thead>
+            <tr>
+                <th>구분(순번)</th>
+                <th>상품명</th>
+                <th>카테고리</th>
+                <th>상품 조회수</th>
+                <th>상품이미지</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item : ${itemCategory}">
+                <td><a th:href="@{/manager/item/detail/{itemId}(itemId = ${item.id})}" th:text="${item.id}">구분(순번)</a></td>
+                <td><a th:href="@{|/manager/item/detail/${item.id}|}" th:text="${item.title}">상품명</a></td>
+                <td th:text="${item.categoryName}">카테고리</td>
+                <td th:text="${item.views}">상품 조회수</td>
+                <td><img th:src="${item.imageName1}" style="width: 100px; height: 100px;"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:replace="~{headAndFoot/footer :: common_footer}"></div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="headAndFoot/header :: common_headerLink(~{::title},~{::link},~{::script},~{::style})">
+    <meta charset="UTF-8">
+    <title>사용자 관리 페이지</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <style>
+        .container{
+            margin-top:150px;
+        }
+        body{
+            /* color:black; */
+            color:inherit;
+            text-decoration: none;
+            /* 밑줄제거 */
+        }
+    </style>
+    <script></script>
+</head>
+<body>
+<div th:replace="~{headAndFoot/header :: common_header}"></div>
+
+<div class="container">
+    <div class="py-5 text-center">
+        <h3>회원 관리</h3>
+    </div>
+
+    <form method="get" class="form-inline">
+        <div class="row float-end">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="사용자 아이디 또는 이름을 입력하세요" th:field="${userSearch.loginId}">
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-secondary">사용자 아이디 조회</button>
+            </div>
+        </div>
+    </form>
+    <hr class="my-4">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>구분(순번)</th>
+            <th>회원 아이디</th>
+            <th>회원 이름</th>
+            <th>회원 등급</th>
+            <th>적립 금액</th>
+            <th>예치 금액</th>
+            <th>성별</th>
+            <th>주소</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td><a th:href="@{/manager/user/detail/{userId}(userId=${user.id})}" th:text="${user.id}">구분(순번)</a></td>
+            <td><a th:href="@{/manager/user/detail/{userId}(userId=${user.id})}" th:text="${user.loginId}">회원 아이디</a></td>
+            <td th:text="${user.name}">회원 이름</td>
+            <td th:text="${user.grade}">회원 등급</td>
+            <td th:text="${user.amount}">적립 금액</td>
+            <td th:text="${user.deposit}">예치 금액</td>
+            <td th:text="${user.gender}">성별</td>
+            <td th:text="${user.address}">주소</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:replace="~{headAndFoot/footer :: common_footer}"></div>
+</body>
+</html>

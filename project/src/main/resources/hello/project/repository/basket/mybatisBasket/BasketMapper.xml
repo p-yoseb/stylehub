@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hello.project.repository.basket.mybatisBasket.BasketMapper">
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        insert into OrderBasket(user_id, item_option_id, quantity)
+        values (#{userId}, #{itemOptionId}, #{quantity})
+    </insert>
+
+    <select id="findByUserId" resultType="hello.project.domain.basket.Basket">
+        select id, user_id as userId, item_option_id as itemOptionId, quantity
+        from OrderBasket
+        where user_id = #{userId}
+    </select>
+
+    <select id="findById" resultType="hello.project.domain.basket.Basket">
+        select id, user_id as userId, item_option_id as itemOptionId, quantity
+        from OrderBasket
+        where id = #{basketId}
+    </select>
+
+    <delete id="deleteBasket">
+        delete from OrderBasket
+        where id = #{basketId}
+    </delete>
+
+    <delete id="deleteByUserId">
+        delete from OrderBasket
+        where user_id = #{userId}
+    </delete>
+</mapper>

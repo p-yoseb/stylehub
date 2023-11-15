@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="headAndFoot/header :: common_headerLink(~{::title},~{::link},~{::script},~{::style})">
+    <meta charset="UTF-8">
+    <title>상품관리 페이지</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <script></script>
+    <style>
+        .container{
+            margin-top:150px;
+        }
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="~{headAndFoot/header :: common_header}"></div>
+
+<div class="container">
+    <div class="py-5 text-center">
+        <h3>상품 옵션 수정</h3>
+    </div>
+
+    <form th:action method="post">
+
+        <div class="row">
+            <div class="col" id="nameId">
+                <label for="name1">상품 옵션</label>
+                <input type="text" id="name1" class="form-control" placeholder="옵션을 입력하세요"
+                th:field="${itemOption.name}" th:errorclass="field-error">
+                <div class="field-error" th:errors="*{itemOption.name}">상품 옵션 오류</div>
+            </div>
+            <div class="col" id="priceId">
+                <label for="price1">상품 가격</label>
+                <input type="text" id="price1" class="form-control" placeholder="가격을 입력하세요"
+                th:field="${itemOption.price}" th:errorclass="field-error">
+                <div class="field-error" th:errors="*{itemOption.price}">상품 옵션 오류</div>
+            </div>
+            <div class="col" id="quantityId">
+                <label for="quantity1">상품 재고</label>
+                <input type="text" id="quantity1" class="form-control" placeholder="재고를 입력하세요"
+                th:field="${itemOption.quantity}" th:errorclass="field-error">
+                <div class="field-error" th:errors="*{itemOption.quantity}">상품 옵션 오류</div>
+            </div>
+        </div>
+
+        <div class="row my-4">
+            <div class="col">
+                <button type="submit" class="w-100 btn btn-primary btn-lg">저장</button>
+            </div>
+            <div class="col">
+                <button type="button" class="w-100 btn btn-secondary btn-lg" th:onclick="|location.href='@{/manager/item/detail/{itemId}(itemId=${itemId})}'|">취소</button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+<div th:replace="~{headAndFoot/footer :: common_footer}"></div>
+<script>
+    // var i = 1;
+    // var itemCount = document.getElementById('itemCount');
+    // var nameId = document.getElementById('nameId');
+    // var priceId = document.getElementById('priceId');
+    // var quantityId = document.getElementById('quantityId');
+    //
+    // function addItem(){
+    //     i++;
+    //
+    //     var count = document.createElement('input');
+    //     var nameItem = document.createElement('input');
+    //     var priceItem = document.createElement('input');
+    //     var quantityItem = document.createElement('input');
+    //
+    //     nameItem.className = 'form-control';
+    //     nameItem.setAttribute('id',"name"+i);
+    //     nameItem.setAttribute('th:field',"${itemOptionNames}");
+    //     priceItem.className = 'form-control';
+    //     priceItem.setAttribute('id',"price"+i);
+    //     nameItem.setAttribute('th:field',"${itemOptionPrices}");
+    //     quantityItem.className = 'form-control';
+    //     quantityItem.setAttribute('id',"quantity"+i);
+    //     nameItem.setAttribute('th:field',"${itemOptionQuantities}");
+    //     count.className = 'form-control';
+    //     count.value = "옵션"+i;
+    //     count.setAttribute('readonly',true);
+    //     count.setAttribute('id',"option"+i);
+    //
+    //     itemCount.appendChild(count);
+    //     nameId.appendChild(nameItem);
+    //     priceId.appendChild(priceItem);
+    //     quantityId.appendChild(quantityItem);
+    // }
+    //
+    // function removeItem(){
+    //     var count = document.getElementById('option'+i);
+    //     var nameItem = document.getElementById('name'+i);
+    //     var priceItem = document.getElementById('price'+i);
+    //     var quantityItem = document.getElementById('quantity'+i);
+    //
+    //     itemCount.removeChild(count);
+    //     nameId.removeChild(nameItem);
+    //     priceId.removeChild(priceItem);
+    //     quantityId.removeChild(quantityItem);
+    //
+    //     i--;
+    // }
+
+</script>
+
+</body>
+</html>
